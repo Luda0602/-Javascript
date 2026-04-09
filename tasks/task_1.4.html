@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 1</h1>
+
+        <p class="description">
+          Дано масив чисел. Потрібно: знайти кількість чисел більших за 0 знайти
+          кількість чисел менших за 0 знайти суму додатних чисел знайти суму
+          від’ємних чисел
+        </p>
+      </div>
+    </div>
+    <script>
+      // Масив
+      function getArray(count) {
+        let array = [];
+        for (let i = 0; i < count; i++) {
+          let number = Number(prompt(`Введіть число ${i + 1}`));
+          array.push(number);
+        }
+        return array;
+      }
+
+      //   Обчислення
+      function solve(array) {
+        let numMore0 = 0;
+        let numLess0 = 0;
+        let sumPositive = 0;
+        let sumNegative = 0;
+
+        for (let i = 0; i < array.length; i++) {
+          if (array[i] > 0) {
+            numMore0++;
+            sumPositive += array[i];
+          } else if (array[i] < 0) {
+            numLess0++;
+            sumNegative += array[i];
+          }
+        }
+        return { numMore0, numLess0, sumPositive, sumNegative };
+      }
+      //   Головна частина
+      const count = parseInt(prompt("Введіть кількість чисел"));
+      const array = getArray(count);
+
+      const result = solve(array);
+
+      //   вивід
+      document.write(`масив: ${array}<br>`);
+      document.write(`Кількість чисел більших за 0:${result.numMore0} <br>`);
+      document.write(`Кількість чисел менших за 0 : ${result.numLess0}<br>`);
+      document.write(`Сума додатніх чисел: ${result.sumPositive} <br>`);
+      document.write(`Сума відємних чисел: ${result.sumNegative}<br>`);
+    </script>
+  </body>
+</html>
