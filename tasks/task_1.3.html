@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 1</h1>
+
+        <p class="description">
+          Дано масив чисел. Потрібно: <br />
+          знайти кількість парних чисел <br />
+          знайти кількість непарних чисел <br />
+          знайти суму парних чисел <br />знайти суму непарних чисел
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // 1. Масив
+      function getArray(count) {
+        let array = [];
+        for (let i = 0; i < count; i++) {
+          let number = Number(prompt(`Введіть число ${i + 1}`));
+          array.push(number);
+        }
+        return array;
+      }
+
+      //  2. Обчислення
+      function solve(array) {
+        let countEven = 0;
+        let countOdd = 0;
+        let sumEven = 0;
+        let sumOdd = 0;
+
+        for (let i = 0; i < array.length; i++) {
+          if (array[i] % 2 === 0) {
+            countEven++;
+            sumEven += array[i];
+          } else {
+            countOdd++;
+            sumOdd += array[i];
+          }
+        }
+
+        return { countEven, countOdd, sumEven, sumOdd };
+      }
+
+      //  3. Головна частина
+      const count = parseInt(prompt("Введіть кількість чисел", "5"));
+      const array = getArray(count);
+
+      const result = solve(array);
+
+      //  4. Вивід
+      document.write(`Масив: ${array} <br>`);
+      document.write(`Парні (кількість): ${result.countEven} <br>`);
+      document.write(`Непарні (кількість): ${result.countOdd} <br>`);
+      document.write(`Сума парних: ${result.sumEven} <br>`);
+      document.write(`Сума непарних: ${result.sumOdd}`);
+    </script>
+  </body>
+</html>

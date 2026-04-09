@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 1</h1>
+
+        <p class="description">
+          Дано масив, який містить оцінки з К предметів. Знайти середній бал і
+          з’ясувати до якої категорії він відноситься (відмінник, двійочник (має
+          хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є
+          хоча би одна трійка)).
+        </p>
+      </div>
+    </div>
+    <script>
+      // 🔹 1. Генерація масиву оцінок
+      function generateNumbersRandom(count) {
+        let array = [];
+        for (let i = 0; i < count; i++) {
+          const number = Math.floor(Math.random() * 11) + 1; // оцінки 1-12
+          array.push(number);
+        }
+        return array;
+      }
+
+      //  2. Знаходимо середній бал
+      function calculateAverage(array) {
+        let sum = 0;
+        for (let i = 0; i < array.length; i++) {
+          sum += array[i];
+        }
+        return sum / array.length;
+      }
+
+      // 3. Визначення категорії
+      function getCategory(array) {
+        let has2 = false;
+        let has3 = false;
+
+        for (let i = 0; i < array.length; i++) {
+          if (array[i] === 2) has2 = true;
+          if (array[i] === 3) has3 = true;
+        }
+
+        if (has2) return "двійочник";
+        else if (has3) return "трійочник";
+        else if (array.every((el) => el >= 10)) return "відмінник";
+        else return "хорошист";
+      }
+
+      // . Ввід даних
+      const subjectsNumber = parseInt(prompt("Кількість предметів", "5"));
+
+      // . Генеруємо оцінки
+      const scores = generateNumbersRandom(subjectsNumber);
+
+      // . Обчислення
+      const average = calculateAverage(scores);
+      const category = getCategory(scores);
+
+      // . Вивід
+      document.write(`Оцінки: ${scores} <br>`);
+      document.write(`Середній бал: ${average.toFixed(2)} <br>`);
+      document.write(`Категорія: ${category}`);
+    </script>
+  </body>
+</html>

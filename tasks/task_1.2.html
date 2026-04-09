@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 1</h1>
+
+        <p class="description">
+          👉 Умова: Дано масив чисел. Знайти: мінімальний елемент максимальний
+          елемент 👉 Ти тренуєш: порівняння змінні min, max
+        </p>
+      </div>
+    </div>
+    <script>
+      // 🔹 1. Масив
+      function getArray(count) {
+        let array = [];
+        for (let i = 0; i < count; i++) {
+          let element = Number(prompt(`Введіть елемент ${i + 1}`));
+          array.push(element);
+        }
+        return array;
+      }
+
+      // 🔹 2. Мінімум
+      function getMinElement(array) {
+        let min = array[0];
+        for (let i = 0; i < array.length; i++) {
+          if (array[i] < min) {
+            min = array[i];
+          }
+        }
+        return min;
+      }
+
+      // 🔹 3. Максимум
+      function getMaxElement(array) {
+        let max = array[0];
+        for (let i = 0; i < array.length; i++) {
+          if (array[i] > max) {
+            max = array[i];
+          }
+        }
+        return max;
+      }
+
+      // 🔹 4. Головна частина
+      //array — це НЕ новий масив
+      //це той самий масив [5, 2, 9]
+      const count = parseInt(prompt("Введіть кількість елементів"));
+      const array = getArray(count); //створюється масив
+
+      const min = getMinElement(array); //цей масив ПЕРЕДАЄТЬСЯ у функцію
+      const max = getMaxElement(array);
+
+      // 🔹 5. Вивід
+      document.write(`Масив: ${array} <br>`);
+      document.write(`Мінімальне: ${min} <br>`);
+      document.write(`Максимальне: ${max} <br>`);
+    </script>
+  </body>
+</html>
