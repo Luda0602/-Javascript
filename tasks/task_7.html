@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 2</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 2</h1>
+
+        <p class="description">
+          Задача 2. Дано масив 30 випадкових цілих чисел. Підрахувати скільки
+          було обмінів під час сортування змішуванням.
+        </p>
+      </div>
+    </div>
+    <script>
+      // Генерація випадкового числа
+      function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      // Створення масиву
+      function generateRandomArray(length, min, max) {
+        const numbers = [];
+
+        for (let i = 0; i < length; i++) {
+          numbers.push(getRandomNumber(min, max));
+        }
+
+        return numbers;
+      }
+
+      // Сортування змішуванням
+      function shakerSort(sourceArray) {
+        let swapCount = 0;
+
+        // Копія масиву
+        let copyArray = sourceArray.slice();
+
+        let left = 0;
+        let right = copyArray.length - 1;
+
+        while (left < right) {
+          // Прохід вправо
+          for (let i = left; i < right; i++) {
+            if (copyArray[i] > copyArray[i + 1]) {
+              const temp = copyArray[i];
+
+              copyArray[i] = copyArray[i + 1];
+              copyArray[i + 1] = temp;
+
+              swapCount++;
+            }
+          }
+
+          right--;
+
+          // Прохід вліво
+          for (let i = right; i > left; i--) {
+            if (copyArray[i] < copyArray[i - 1]) {
+              const temp = copyArray[i];
+
+              copyArray[i] = copyArray[i - 1];
+              copyArray[i - 1] = temp;
+
+              swapCount++;
+            }
+          }
+
+          left++;
+        }
+
+        return {
+          sortedArray: copyArray,
+          swaps: swapCount,
+        };
+      }
+
+      // Початковий масив
+      const numbers = generateRandomArray(30, 1, 100);
+
+      // Результат сортування
+      const result = shakerSort(numbers);
+
+      document.write(`Початковий масив: ${numbers} <br>`);
+      document.write(`Відсортований масив: ${result.sortedArray} <br>`);
+      document.write(`Кількість обмінів: ${result.swaps}`);
+    </script>
+  </body>
+</html>

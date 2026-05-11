@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 6</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 1</h1>
+
+        <p class="description">
+          Задача 1. Дано масив 30 випадкових цілих чисел. Підрахувати скільки
+          було обмінів під час сортування бульбашкою
+        </p>
+      </div>
+    </div>
+    <script>
+      // Генерація випадкового числа
+      function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      // Створення масиву
+      function generateRandomArray(length, min, max) {
+        const numbers = [];
+
+        for (let i = 0; i < length; i++) {
+          numbers.push(getRandomNumber(min, max));
+        }
+
+        return numbers;
+      }
+
+      // Сортування бульбашкою
+      function bubbleSort(sourceArray) {
+        let swapCount = 0;
+
+        // Копія масиву
+        const arrayCopy = sourceArray.slice();
+
+        const n = arrayCopy.length;
+
+        for (let i = 0; i < n - 1; i++) {
+          for (let j = 0; j < n - 1 - i; j++) {
+            // Якщо лівий елемент більший — міняємо місцями
+            if (arrayCopy[j] > arrayCopy[j + 1]) {
+              let temp = arrayCopy[j];
+
+              arrayCopy[j] = arrayCopy[j + 1];
+              arrayCopy[j + 1] = temp;
+
+              swapCount++;
+            }
+          }
+        }
+
+        return {
+          sortedArray: arrayCopy,
+          swaps: swapCount,
+        };
+      }
+
+      // Початковий масив по умові задачі
+      const numbers = generateRandomArray(30, 1, 100);
+
+      // Результат сортування
+      const result = bubbleSort(numbers);
+
+      console.log("Початковий масив:");
+      console.log(numbers);
+
+      console.log("Відсортований масив:");
+      console.log(result.sortedArray);
+
+      console.log("Кількість обмінів:");
+      console.log(result.swaps);
+    </script>
+  </body>
+</html>

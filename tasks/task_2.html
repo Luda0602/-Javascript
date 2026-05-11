@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 6</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 6</h1>
+
+        <p class="description">
+          Задача Є двовимірний масив table розміром 6 рядків на 8 стовпців.
+          Числа випадкові від 1 до 50. Потрібно знайти: 1)Суму елементів у
+          верхній лівій частині таблиці. 2)Суму елементів у верхній правій
+          частині таблиці. 3)Суму елементів у нижній лівій частині таблиці.
+          4)Суму елементів у нижній правій частині таблиці. 5)Суму елементів у
+          непарних рядках. 6)Суму елементів у парних стовпцях. 7) Суму
+          елементів, де номер рядка і номер стовпця мають однакову парність.
+        </p>
+      </div>
+    </div>
+    <script>
+      // ств простого масиву
+      function getJustArray(colums, max, min) {
+        let arr = [];
+        for (let i = 0; i < colums; i++) {
+          arr.push(Math.floor(min + Math.random() * (max - min + 1)));
+        }
+        return arr;
+      }
+
+      // багатовимірний масив
+      function getComplexArray(rows, colums, max, min) {
+        let table = [];
+        for (let r = 0; r < rows; r++) {
+          const randRow = getJustArray(colums, max, min);
+          table.push(randRow);
+        }
+        return table;
+      }
+
+      // створюємо масив двовимірний, тобто таблицю
+      const complexArray = getComplexArray(6, 8, 50, 1);
+
+      const joinArray = complexArray.map((row) => row.join(", ")).join("<br>");
+
+      document.write(`Згенерований масив:<br>${joinArray}<br><br>`);
+      console.log(complexArray);
+
+      const halfRow = Math.floor(complexArray.length / 2);
+      const halfCol = Math.floor(complexArray[0].length / 2);
+      // 1)Суму елементів у верхній лівій частині таблиці.
+      let sum1 = 0;
+      for (let row = 0; row < halfRow; row++) {
+        for (let col = 0; col < halfCol; col++) {
+          sum1 += complexArray[row][col];
+        }
+      }
+      document.write(
+        `1.Суму елементів у верхній лівій частині таблиці = ${sum1}<br>`,
+      );
+      console.log(sum1);
+      //2)Суму елементів у верхній правій частині таблиці.
+      let sum2 = 0;
+      for (let row = 0; row < halfRow; row++) {
+        for (let col = halfCol; col < complexArray[row].length; col++) {
+          sum2 += complexArray[row][col];
+        }
+      }
+      document.write(
+        `2.Суму елементів у верхній правій частині таблиці = ${sum2}<br>`,
+      );
+      console.log(sum2);
+      //3)Суму елементів у нижній лівій частині таблиці.
+      let sum3 = 0;
+      for (let row = halfRow; row < complexArray.length; row++) {
+        for (let col = 0; col < halfCol; col++) {
+          sum3 += complexArray[row][col];
+        }
+      }
+      document.write(
+        `3.Суму елементів у нижній лівій частині таблиці = ${sum3}<br>`,
+      );
+      console.log(sum3);
+      // 4)Суму елементів у нижній правій частині таблиці
+      let sum4 = 0;
+      for (let row = halfRow; row < complexArray.length; row++) {
+        for (let col = halfCol; col < complexArray[row].length; col++) {
+          sum4 += complexArray[row][col];
+        }
+      }
+      document.write(
+        `4.Суму елементів у нижній правій частині таблиці = ${sum4}<br>`,
+      );
+      console.log(sum4);
+      //5)Суму елементів у непарних рядках.
+
+      let sumOddRows = 0;
+
+      for (let row = 1; row < complexArray.length; row += 2) {
+        for (let col = 0; col < complexArray[row].length; col++) {
+          sumOddRows += complexArray[row][col];
+        }
+      }
+
+      document.write(`5. Сума елементів у непарних рядках = ${sumOddRows}<br>`);
+      console.log(sumOddRows);
+
+      //6)Суму елементів у парних стовпцях
+      let sumEvenCols = 0;
+      for (let row = 0; row < complexArray.length; row++) {
+        for (let col = 0; col < complexArray[row].length; col += 2) {
+          sumEvenCols += complexArray[row][col];
+        }
+      }
+      document.write(
+        `6. Суму елементів у парних стовпцях = ${sumEvenCols}<br>`,
+      );
+      console.log(sumEvenCols);
+      // 7) Сума елементів, де номер рядка і номер стовпця мають однакову парність
+      let sumSameOddandEven = 0;
+
+      for (let row = 0; row < complexArray.length; row++) {
+        for (let col = 0; col < complexArray[row].length; col++) {
+          if (row % 2 === col % 2) {
+            sumSameOddandEven += complexArray[row][col];
+          }
+        }
+      }
+
+      document.write(
+        `7. Сума елементів, де номер рядка і номер стовпця мають однакову парність = ${sumSameOddandEven}<br>`,
+      );
+
+      console.log(sumSameOddandEven);
+      //7.Пройди по всіх елементах таблиці. Якщо номер рядка і номер стовпця мають однакову парність, додай цей елемент до суми.
+    </script>
+  </body>
+</html>

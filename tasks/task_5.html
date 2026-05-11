@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 6</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 6</h1>
+
+        <p class="description">
+          Знайди середнє значення всіх чисел масиву: let arr = [2, 4, 6, 8];
+        </p>
+      </div>
+    </div>
+    <script>
+      const arr = [];
+      for (let i = 0; i < 20; i++) {
+        arr.push(Math.floor(Math.random() * 100) - 50);
+      }
+      let sumEven = 0;
+      let countEven = 0;
+      let max = arr[0];
+
+      for (let i = 1; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+          sumEven += arr[i];
+          countEven++;
+        }
+
+        if (arr[i] > max) {
+          max = arr[i];
+        }
+      }
+      const average = sumEven / countEven;
+      console.log(`Масив ${arr}`);
+      console.log(`Середнє значення ${average}`);
+      console.log(`Максимальне число ${max}`);
+    </script>
+  </body>
+</html>
