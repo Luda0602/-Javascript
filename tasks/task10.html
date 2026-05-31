@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 3</h1>
+
+        <p class="description">
+          Задача 5. Дано масив імен. Застосовуючи відповідне сортування та
+          бінарний пошук визначити, чи є у масиві ім’я «Olga» і під яким
+          індексом.
+        </p>
+      </div>
+    </div>
+    <script>
+      let names = ["Ivan", "Olga", "Petro", "Anna", "Danylo"];
+
+      document.write("<h1>Task 5</h1>");
+      document.write(`<h3>Your array: ${names.join(", ")}</h3>`);
+
+      function alphabetInsertionSort(array) {
+        for (
+          let currentIndex = 1;
+          currentIndex < array.length;
+          currentIndex++
+        ) {
+          let currentName = array[currentIndex];
+          let previousIndex;
+
+          for (
+            previousIndex = currentIndex - 1;
+            previousIndex >= 0 && array[previousIndex] > currentName;
+            previousIndex--
+          ) {
+            array[previousIndex + 1] = array[previousIndex];
+          }
+
+          array[previousIndex + 1] = currentName;
+        }
+
+        return array;
+      }
+
+      let sortedNames = alphabetInsertionSort([...names]);
+
+      document.write(`<h3>Sorted array: ${sortedNames.join(", ")}</h3>`);
+
+      function findNameIndex(array, searchName) {
+        for (let start = 0, end = array.length - 1; start <= end; ) {
+          let middle = Math.floor((start + end) / 2);
+
+          if (array[middle] === searchName) {
+            return middle;
+          }
+
+          if (array[middle] < searchName) {
+            start = middle + 1;
+          } else {
+            end = middle - 1;
+          }
+        }
+
+        return -1;
+      }
+
+      let foundIndex = findNameIndex(sortedNames, "Olga");
+
+      if (foundIndex !== -1) {
+        document.write(`<h3>Ім'я "Olga" під індексом ${foundIndex}</h3>`);
+      } else {
+        document.write("<h3>Такого імені немає у масиві</h3>");
+      }
+    </script>
+  </body>
+</html>

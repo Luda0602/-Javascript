@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 3</h1>
+
+        <p class="description">
+          Задача 4. Для розглянутих методів сортування спробувати вивести етапи
+          сортування шляхом виведення відповідних таблиць за зразком.
+        </p>
+      </div>
+    </div>
+    <script>
+      // Генерація випадкового числа
+      function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      // Створення масиву
+      function generateRandomArray(length, min, max) {
+        const numbers = [];
+
+        for (let i = 0; i < length; i++) {
+          numbers.push(getRandomNumber(min, max));
+        }
+
+        return numbers;
+      }
+      // малює кроки сортування
+      function showStep(numbers, selectedIndex) {
+        document.write(`<p style="font-size: 20px;">[`);
+
+        numbers.forEach((value, index) => {
+          if (index === selectedIndex) {
+            document.write(
+              `<span style="border: 1px solid pink; padding: 2px;">${value}</span>`,
+            );
+          } else {
+            document.write(`${value}`);
+          }
+
+          if (index < numbers.length - 1) {
+            document.write(`, `);
+          }
+        });
+
+        document.write(`]</p>`);
+      }
+      // Сортування бульбашкою
+      function bubbleSort(startArray) {
+        let numbers = [...startArray];
+        document.write(`<p>1)Сортування бульбашкою</p>`);
+        for (let pass = 0; pass < numbers.length - 1; pass++) {
+          for (let index = 0; index < numbers.length - 1 - pass; index++) {
+            if (numbers[index] > numbers[index + 1]) {
+              let temp = numbers[index];
+              numbers[index] = numbers[index + 1];
+              numbers[index + 1] = temp;
+              showStep(numbers, index + 1);
+            }
+          }
+        }
+      }
+      // Сортування змішуванням
+      function shakerSort(startArray) {
+        let numbers = [...startArray];
+
+        document.write(`<h3>2) Сортування змішуванням</h3>`);
+
+        let leftSide = 0;
+        let rightSide = numbers.length - 1;
+
+        while (leftSide < rightSide) {
+          for (let index = leftSide; index < rightSide; index++) {
+            if (numbers[index] > numbers[index + 1]) {
+              let temp = numbers[index];
+              numbers[index] = numbers[index + 1];
+              numbers[index + 1] = temp;
+
+              showStep(numbers, index + 1);
+            }
+          }
+
+          rightSide--;
+
+          for (let index = rightSide; index > leftSide; index--) {
+            if (numbers[index] < numbers[index - 1]) {
+              let temp = numbers[index];
+              numbers[index] = numbers[index - 1];
+              numbers[index - 1] = temp;
+
+              showStep(numbers, index - 1);
+            }
+          }
+
+          leftSide++;
+        }
+      }
+      // Сортування включеннями
+      function insertionSort(startArray) {
+        let numbers = [...startArray];
+
+        document.write(`<h3>3) Сортування включеннями</h3>`);
+
+        for (
+          let currentIndex = 1;
+          currentIndex < numbers.length;
+          currentIndex++
+        ) {
+          let currentValue = numbers[currentIndex];
+          let sortedIndex = currentIndex - 1;
+
+          while (sortedIndex >= 0 && numbers[sortedIndex] > currentValue) {
+            numbers[sortedIndex + 1] = numbers[sortedIndex];
+            sortedIndex--;
+          }
+
+          numbers[sortedIndex + 1] = currentValue;
+
+          showStep(numbers, sortedIndex + 1);
+        }
+      }
+
+      const startNumbers = generateRandomArray(5, 1, 100);
+
+      document.write(
+        `<p style="font-size: 25px;"><b>Початковий масив:</b><br> [${startNumbers.join(", ")}]</p>`,
+      );
+
+      document.write(`<hr>`);
+      bubbleSort([...startNumbers]);
+
+      document.write(`<hr>`);
+      shakerSort([...startNumbers]);
+
+      document.write(`<hr>`);
+      insertionSort([...startNumbers]);
+    </script>
+  </body>
+</html>

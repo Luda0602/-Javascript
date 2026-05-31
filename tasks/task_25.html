@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 3</h1>
+
+        <p class="description">
+          Створи об’єкт wallet. Властивості: owner: "Ірина" money: 500
+        </p>
+      </div>
+    </div>
+    <script>
+      const wallet = {
+        owner: "Ірина",
+        money: 500,
+
+        addMoney(amount) {
+          this.money += amount;
+          return `Додано ${amount} грн`;
+        },
+
+        spendMoney(amount) {
+          if (this.money >= amount) {
+            this.money -= amount;
+            return `Витрачено ${amount} грн`;
+          } else {
+            return "Недостатньо коштів";
+          }
+        },
+
+        showBalance() {
+          return `На рахунку ${this.owner}: ${this.money} грн`;
+        },
+      };
+
+      console.log(wallet.showBalance()); // 500
+
+      console.log(wallet.addMoney(100)); // додали 100
+      console.log(wallet.showBalance()); // 600
+
+      console.log(wallet.spendMoney(250)); // витратили 250
+      console.log(wallet.showBalance()); // 350
+
+      console.log(wallet.spendMoney(1000)); // недостатньо
+      console.log(wallet.showBalance()); // 350
+    </script>
+  </body>
+</html>

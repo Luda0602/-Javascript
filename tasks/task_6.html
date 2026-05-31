@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Задача 6</title>
+    <title>Задача 12</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
@@ -71,14 +71,11 @@
       // Результат сортування
       const result = bubbleSort(numbers);
 
-      console.log("Початковий масив:");
-      console.log(numbers);
+      document.write(`Початковий масив:${numbers}<br>`);
 
-      console.log("Відсортований масив:");
-      console.log(result.sortedArray);
+      document.write(`Відсортований масив:${result.sortedArray}<br>`);
 
-      console.log("Кількість обмінів:");
-      console.log(result.swaps);
+      document.write(`Кількість обмінів:${result.swaps}`);
     </script>
   </body>
 </html>

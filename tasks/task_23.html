@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 1</h1>
+
+        <p class="description">
+          Створи об’єкт student. У нього мають бути властивості: name age grades
+        </p>
+      </div>
+    </div>
+    <script>
+      const student = {
+        name: "Олена",
+        age: 18,
+        grades: [10, 8, 11, 9],
+        getAverageGrade() {
+          const sum = this.grades.reduce((total, grade) => total + grade, 0);
+          return sum / this.grades.length;
+        },
+        showInfo() {
+          return `Студент ${this.name}, вік ${this.age}, середній бал ${this.getAverageGrade()}`;
+        },
+      };
+      document.write(student.getAverageGrade() + "<br>");
+      document.write(student.showInfo() + "<br>");
+    </script>
+  </body>
+</html>

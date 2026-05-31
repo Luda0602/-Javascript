@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 2</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 2</h1>
+
+        <p class="description">
+          Задача 4: Об’єкт “Банк” Створи об’єкт bankAccount. Властивості: owner:
+          "Марія" balance: 1000
+        </p>
+      </div>
+    </div>
+    <script>
+      const bankAccount = {
+        owner: "Марія",
+        balance: 1000,
+        // deposit(amount) — додає amount до balance і повертає рядок:
+        deposit(amount) {
+          this.balance += amount;
+          return `Поповнено ${amount} грн `;
+        },
+        //якщо грошей вистачає, віднімає amount від balance і повертає:
+        withdraw(amount) {
+          if (this.balance >= amount) {
+            this.balance -= amount;
+            return `Знято на ${amount} грн`;
+          } else {
+            return "Недостатньо коштів";
+          }
+        },
+        getBalance() {
+          return `Баланс ${this.owner}:${this.balance} `;
+        },
+      };
+      console.log(bankAccount.getBalance());
+      console.log(bankAccount.deposit(200));
+      console.log(bankAccount.getBalance());
+      console.log(bankAccount.withdraw(300));
+      console.log(bankAccount.getBalance());
+      console.log(bankAccount.withdraw(2000));
+      console.log(bankAccount.getBalance());
+    </script>
+  </body>
+</html>

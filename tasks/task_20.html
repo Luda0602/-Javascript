@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 3</h1>
+
+        <p class="description">
+          Задача 0.Створити об’єкт Student.де name — ім’я учня, а marks — масив
+          оцінок.getAverage() getGoodMarks() getDoubledMarks() ,getAverage() —
+          повертає середню оцінку, використай reduce(). getGoodMarks() —
+          повертає тільки оцінки більші або рівні 10, використай filter().
+          getDoubledMarks() — повертає новий масив, де кожна оцінка помножена на
+          2, використай map().
+        </p>
+      </div>
+    </div>
+    <script>
+      const student = {
+        name: "Oleg",
+        marks: [8, 9, 10, 8, 11, 12],
+        getAverage() {
+          const sum = this.marks.reduce((total, mark) => total + mark, 0);
+          return sum / this.marks.length;
+        },
+        getGoodMarks() {
+          const goodMarks = this.marks.filter((mark) => mark >= 10);
+          return goodMarks;
+        },
+        getDoubledMarks() {
+          return this.marks.map((mark) => mark * 2);
+        },
+      };
+      document.write(student.getAverage() + "<br>");
+      document.write(student.getGoodMarks().join(", ") + "<br>");
+      document.write(student.getDoubledMarks().join(", ") + "<br>");
+    </script>
+  </body>
+</html>
