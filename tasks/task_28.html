@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 3</h1>
+
+        <p class="description">Створи клас Wallet.</p>
+      </div>
+    </div>
+    <script>
+      class Wallet {
+        #owner;
+        #money;
+        constructor(owner, money) {
+          this.#owner = owner;
+          this.#money = money;
+        }
+        addMoney(amount) {
+          this.#money += amount;
+          return `Додано ${amount} грн`;
+        }
+        spendMoney(amount) {
+          if (this.#money >= amount) {
+            this.#money -= amount;
+            return `Витрачено ${amount}`;
+          } else {
+            return "Недостатньо коштів";
+          }
+        }
+        toString() {
+          return `Гаманець: ${this.#owner}: ${this.#money} грн.`;
+        }
+      }
+      const wallet = new Wallet("Ірина", 500);
+      document.write(wallet.toString() + "<br>");
+      document.write(wallet.addMoney(200) + "<br>");
+      document.write(wallet.toString() + "<br>");
+      document.write(wallet.spendMoney(100) + "<br>");
+      document.write(wallet.toString() + "<br>");
+    </script>
+  </body>
+</html>

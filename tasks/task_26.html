@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 3</h1>
+
+        <p class="description">Об’єкт “Склад”</p>
+      </div>
+    </div>
+    <script>
+      const warehouse = {
+        productName: "Ноутбук",
+        productCount: 10,
+
+        addProduct(count) {
+          this.productCount += count;
+          return `Додано ${count} шт.`;
+        },
+
+        sellProduct(count) {
+          if (this.productCount >= count) {
+            this.productCount -= count;
+            return `Продано ${count} шт.`;
+          } else {
+            return "Недостатньо товару на складі";
+          }
+        },
+
+        showProductInfo() {
+          return `${this.productName}: ${this.productCount} шт.`;
+        },
+      };
+
+      console.log(warehouse.showProductInfo());
+      console.log(warehouse.addProduct(5));
+      console.log(warehouse.showProductInfo());
+      console.log(warehouse.sellProduct(3));
+      console.log(warehouse.showProductInfo());
+      console.log(warehouse.sellProduct(20));
+      console.log(warehouse.showProductInfo());
+    </script>
+  </body>
+</html>

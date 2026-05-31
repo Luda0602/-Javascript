@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="../index.html" class="back">← Назад</a>
+
+      <div class="card">
+        <h1>Задача 3</h1>
+
+        <p class="description">Об’єкт “Телефон”</p>
+      </div>
+    </div>
+    <script>
+      const phone = {
+        brand: "Samsung",
+        battery: 70,
+        isOn: false,
+        turnOn() {
+          this.isOn = true;
+          return "Телефон увімкнено";
+        },
+        turnOff() {
+          this.isOn = false;
+          return "Телефон вимкнено";
+        },
+        charge(amount) {
+          this.battery += amount;
+          if (this.battery > 100) {
+            this.battery = 100;
+          }
+          return `Телефон заряджено до ${this.battery} %`;
+        },
+
+        useBattery(amount) {
+          if (this.isOn === false) {
+            return "Спочатку увімкніть телефон";
+          }
+          if (this.battery < amount) {
+            return "Недостатньо заряду";
+          }
+          this.battery -= amount;
+          return `Використано ${amount} % заряду`;
+        },
+        showInfo() {
+          const phoneState = this.isOn ? "увімкнений" : "вимкнений";
+          return `${this.brand}: заряд: ${this.battery},стан:${this.isOn}`;
+        },
+      };
+      console.log(phone.showInfo());
+      console.log(phone.useBattery(20));
+      console.log(phone.turnOn());
+      console.log(phone.useBattery(20));
+      console.log(phone.showInfo());
+      console.log(phone.charge(60));
+      console.log(phone.showInfo());
+      console.log(phone.turnOff());
+      console.log(phone.showInfo());
+    </script>
+  </body>
+</html>
